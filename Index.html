@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@lucalautaro__ | Diseño Web Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold:       #C9A96E;
+  --gold-light: #E2C48A;
+  --gold-dim:   rgba(201,169,110,0.15);
+  --gold-glow:  rgba(201,169,110,0.25);
+  --bg:         #0e0a07;
+  --bg-card:    #1a1410;
+  --bg-card2:   #211c16;
+  --white:      #f0ead8;
+  --white-dim:  rgba(240,234,216,0.55);
+  --white-faint:rgba(240,234,216,0.08);
+  --red:        #c0392b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: radial-gradient(ellipse at top, #1a120a 0%, #0a0704 60%, #0e0a07 100%);
+  color: var(--white);
+  text-align: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* PARTÍCULAS */
+.particles {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+.particle {
+  position: absolute; border-radius: 50%; opacity: 0;
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
+  animation: float-p linear infinite;
+}
+@keyframes float-p {
+  0%  { opacity:0; transform:translateY(100vh) scale(0); }
+  8%  { opacity:0.7; }
+  92% { opacity:0.3; }
+  100%{ opacity:0; transform:translateY(-10vh) scale(1.5); }
+}
+
+/* SECCIONES */
+section {
+  position: relative; z-index: 1;
+  padding: 70px 22px;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+section.visible { opacity:1; transform:translateY(0); }
+
+/* SEPARADORES */
+.sep {
+  width:100%; height:1px; position:relative; z-index:1;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.2), transparent);
+}
+.divider {
+  width:44px; height:2px; border-radius:2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  margin: 0 auto 24px;
+}
+
+/* LOGO ESQUINA */
+.logo-corner {
+  position:fixed; top:18px; right:18px; z-index:1000;
+  width:46px; height:46px; border-radius:50%;
+  border:1.5px solid var(--gold);
+  box-shadow:0 0 14px var(--gold-glow);
+  overflow:hidden; text-decoration:none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.logo-corner:hover { transform:scale(1.1); box-shadow:0 0 24px var(--gold-glow); }
+.logo-corner img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ── HERO ── */
+.hero { padding-top: 90px; padding-bottom: 70px; }
+
+.hero-badge {
+  display:inline-block;
+  border:1px solid rgba(201,169,110,0.4);
+  color: var(--gold-light);
+  font-size:13px; font-weight:400; letter-spacing:0.5px;
+  padding:7px 22px; border-radius:50px;
+  margin-bottom:32px;
+  background: rgba(201,169,110,0.05);
+}
+
+.hero h1 {
+  font-family:'Playfair Display', serif;
+  font-size: clamp(32px, 7vw, 58px);
+  font-weight:700; line-height:1.15;
+  color: var(--white);
+  margin-bottom:18px;
+}
+.hero h1 span { color: var(--gold-light); font-weight:900; }
+
+.hero p {
+  font-size:16px; color:var(--white-dim);
+  line-height:1.7; margin-bottom:36px;
+  max-width:380px; margin-left:auto; margin-right:auto;
+}
+
+/* PILL TAGS */
+.pill-row { display:flex; flex-direction:column; gap:12px; align-items:center; margin-bottom:36px; }
+.pill {
+  border:1px solid rgba(240,234,216,0.15);
+  color:var(--white-dim); font-size:14px;
+  padding:12px 24px; border-radius:50px;
+  background:rgba(255,255,255,0.03);
+  max-width:320px; width:100%;
+}
+
+/* URGENCIA */
+.urgency-badge {
+  display:inline-block;
+  background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.35);
+  color:#e05a4a; font-size:13px; font-weight:600;
+  padding:6px 18px; border-radius:30px; margin-bottom:24px;
+  animation:pulse-red 2s infinite;
+}
+@keyframes pulse-red {
+  0%,100%{ box-shadow:0 0 0 0 rgba(192,57,43,0.35); }
+  50%    { box-shadow:0 0 0 8px rgba(192,57,43,0); }
+}
+
+/* BOTONES */
+.btn {
+  display:inline-block; margin:7px;
+  padding:15px 30px; border-radius:8px;
+  text-decoration:none; font-family:'Lato',sans-serif;
+  font-weight:700; font-size:15px; letter-spacing:0.3px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn:hover { transform:translateY(-2px); }
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color:#0a0704; box-shadow:0 4px 22px var(--gold-glow);
+  border-radius:50px; display:block; max-width:340px;
+  margin:0 auto; text-align:center; padding:17px 30px;
+}
+.btn-gold:hover { box-shadow:0 6px 32px rgba(201,169,110,0.45); }
+
+.btn-wa {
+  background:linear-gradient(135deg,#1ebe57,#25D366);
+  color:white; box-shadow:0 4px 18px rgba(37,211,102,0.3);
+  border-radius:50px; display:block; max-width:340px;
+  margin:10px auto; text-align:center; padding:17px 30px;
+}
+.btn-outline {
+  background:transparent; color:var(--white);
+  border:1px solid rgba(240,234,216,0.2);
+  border-radius:50px;
+}
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+
+/* CARDS OSCURAS */
+.card {
+  background:var(--bg-card);
+  border-radius:16px; padding:26px 24px;
+  border:1px solid rgba(201,169,110,0.12);
+  max-width:440px; margin:12px auto;
+  transition:transform 0.3s, border-color 0.3s;
+}
+.card:hover { transform:translateY(-3px); border-color:rgba(201,169,110,0.3); }
+
+/* PERFIL */
+.profile-img {
+  width:120px; height:120px; border-radius:50%; object-fit:cover;
+  border:2px solid var(--gold); box-shadow:0 0 20px var(--gold-glow);
+  display:block; margin:0 auto 16px;
+}
+
+/* STAT */
+.stat-num {
+  font-family:'Playfair Display',serif;
+  font-size:48px; font-weight:900; color:var(--gold-light); line-height:1;
+}
+.stat-label { font-size:13px; color:var(--white-dim); margin-top:4px; }
+
+/* IG IMG */
+.ig-img {
+  width:100%; max-width:340px; border-radius:12px;
+  margin:16px auto 0; display:block;
+  border:1px solid rgba(201,169,110,0.2);
+}
+.ig-placeholder {
+  width:100%; max-width:340px; height:180px; border-radius:12px;
+  margin:16px auto 0; border:1px solid rgba(201,169,110,0.2);
+  background:var(--bg-card2); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:8px;
+  color:var(--gold); font-size:14px;
+}
+
+/* PRECIO */
+.old-price {
+  text-decoration:line-through; color:#4a4035;
+  font-size:20px; font-weight:400; margin-bottom:4px;
+}
+.price-row { display:flex; align-items:center; justify-content:center; gap:14px; margin:6px 0; }
+.price {
+  font-family:'Playfair Display',serif;
+  font-size: clamp(40px, 10vw, 68px);
+  font-weight:900;
+  color:var(--gold-light); line-height:1; letter-spacing:0px;
+}
+.price-badge {
+  background:var(--red); color:white;
+  font-size:12px; font-weight:700;
+  padding:5px 11px; border-radius:6px;
+  align-self:flex-start; margin-top:12px;
+}
+.price-sub { font-size:13px; color:var(--white-dim); margin-bottom:16px; }
+
+/* CUPOS */
+.cupos-bar {
+  background:rgba(255,255,255,0.04); border-radius:8px;
+  overflow:hidden; height:7px; margin:12px 0 6px;
+}
+.cupos-fill {
+  height:100%; background:linear-gradient(90deg,#c0392b,#e74c3c);
+  border-radius:8px; width:50%; animation:shrink 90s linear infinite;
+}
+@keyframes shrink { 0%{width:50%} 100%{width:12%} }
+.cupos-text { font-size:13px; color:#e05a4a; font-weight:600; }
+
+/* CONTADOR */
+.timer-wrap { margin-top:20px; }
+.timer-label { font-size:11px; color:var(--white-dim); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:10px; }
+.timer { display:flex; justify-content:center; gap:8px; }
+.timer-block {
+  background:var(--bg-card2); border:1px solid rgba(201,169,110,0.15);
+  border-radius:10px; padding:10px 12px; min-width:56px;
+}
+.timer-num { font-size:26px; font-weight:700; color:var(--gold-light); line-height:1; }
+.timer-unit { font-size:9px; color:var(--white-dim); text-transform:uppercase; letter-spacing:1px; }
+
+/* PAIN POINTS */
+.pain-card {
+  display:flex; align-items:flex-start; gap:14px; text-align:left;
+  background:var(--bg-card); border:1px solid rgba(201,169,110,0.1);
+  border-radius:14px; padding:20px 18px;
+  max-width:440px; margin:10px auto;
+  transition:border-color 0.3s;
+}
+.pain-card:hover { border-color:rgba(201,169,110,0.3); }
+.pain-icon {
+  width:40px; height:40px; border-radius:10px; flex-shrink:0;
+  background:rgba(201,169,110,0.1); border:1px solid rgba(201,169,110,0.2);
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+}
+.pain-card p { font-size:14px; color:var(--white-dim); line-height:1.6; padding-top:8px; }
+
+/* TESTIMONIOS */
+.testimonial {
+  background:#fff; border-radius:14px; padding:20px 22px;
+  max-width:440px; margin:12px auto; text-align:left;
+  box-shadow:0 4px 30px rgba(0,0,0,0.4); transition:transform 0.3s;
+}
+.testimonial:hover { transform:translateY(-3px); }
+.t-header { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.t-avatar {
+  width:36px; height:36px; border-radius:50%;
+  background:#f0ebe0; display:flex; align-items:center;
+  justify-content:center; font-size:17px; flex-shrink:0;
+}
+.t-name { font-weight:700; font-size:14px; color:#111; margin:0; }
+.t-role { font-size:12px; color:#888; margin:0; }
+.testimonial p { font-size:14px; color:#333; line-height:1.6; margin:0; }
+.stars { color:#f5a623; font-size:12px; margin-bottom:8px; }
+
+/* BENEFICIOS */
+.benefit {
+  display:flex; align-items:flex-start; gap:14px; text-align:left;
+}
+.b-icon {
+  width:42px; height:42px; border-radius:10px; flex-shrink:0;
+  background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.2);
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+}
+.benefit strong { font-size:15px; color:var(--white); display:block; margin-bottom:2px; }
+.benefit p { font-size:13px; color:var(--white-dim); line-height:1.5; }
+
+/* MOTIVACIÓN */
+.motiv-block {
+  max-width:440px; margin:12px auto; padding:22px 24px;
+  background:var(--bg-card);
+  border-left:3px solid var(--gold);
+  border-radius:0 14px 14px 0; text-align:left;
+}
+.motiv-block p { font-size:15px; color:var(--white); line-height:1.75; font-style:italic; }
+.motiv-block span {
+  display:block; margin-top:10px; font-size:11px;
+  color:var(--gold); font-style:normal; font-weight:700;
+  text-transform:uppercase; letter-spacing:1.5px;
+}
+
+/* FAQ */
+.faq-item {
+  max-width:440px; margin:8px auto;
+  background:var(--bg-card); border:1px solid rgba(201,169,110,0.12);
+  border-radius:14px; overflow:hidden; text-align:left;
+  transition:border-color 0.3s;
+}
+.faq-item.open { border-color:rgba(201,169,110,0.4); }
+.faq-q {
+  padding:18px 20px; font-weight:700; font-size:14px;
+  color:var(--white); cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; user-select:none; transition:color 0.3s;
+}
+.faq-item.open .faq-q { color:var(--gold-light); }
+.faq-arrow { color:var(--gold); font-size:20px; transition:transform 0.3s; flex-shrink:0; }
+.faq-item.open .faq-arrow { transform:rotate(45deg); }
+.faq-a { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s; padding:0 20px; }
+.faq-item.open .faq-a { max-height:300px; padding:0 20px 18px; }
+.faq-a p { font-size:14px; color:var(--white-dim); line-height:1.7; }
+
+/* TÍTULOS DE SECCIÓN */
+section h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,5vw,40px); font-weight:700;
+  color:var(--white); margin-bottom:10px;
+}
+.gold-text { color:var(--gold-light); }
+.section-sub { color:var(--white-dim); font-size:14px; margin-bottom:26px; line-height:1.6; }
+
+/* CHECKLIST */
+.check-list { list-style:none; text-align:left; max-width:380px; margin:16px auto 0; }
+.check-list li {
+  display:flex; align-items:flex-start; gap:12px;
+  font-size:14px; color:var(--white-dim); padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.check-list li:last-child { border-bottom:none; }
+.check-list li span { color:var(--gold); font-size:16px; flex-shrink:0; margin-top:1px; }
+
+/* BOTÓN FLOTANTE */
+.wf {
+  position:fixed; bottom:24px; right:24px;
+  background:linear-gradient(135deg,#1ebe57,#25D366);
+  color:white; font-size:24px;
+  width:56px; height:56px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%; box-shadow:0 0 22px rgba(37,211,102,0.4);
+  z-index:999; text-decoration:none;
+  animation:pulse-green 2.5s infinite;
+  transition:transform 0.3s;
+}
+.wf:hover { transform:scale(1.1); }
+@keyframes pulse-green {
+  0%,100%{ box-shadow:0 0 0 0 rgba(37,211,102,0.4); }
+  50%    { box-shadow:0 0 0 12px rgba(37,211,102,0); }
+}
+
+footer {
+  position:relative; z-index:1; padding:30px 20px;
+  color:rgba(240,234,216,0.2); font-size:13px;
+  border-top:1px solid rgba(201,169,110,0.08);
+}
+</style>
+
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<!-- ═══════════ HERO ═══════════ -->
+
+<section class="hero visible">
+  <div class="hero-badge">@lucalautaro__ · Diseño Web</div>
+  <h1>Tu negocio merece<br>una web que <span>venda</span></h1>
+  <p>Diseño profesional, entrega en 24–48hs y estructura pensada para convertir visitas en clientes.</p>
+
+  <div class="pill-row">
+    <div class="pill">✓ Sin experiencia técnica de tu parte</div>
+    <div class="pill">✓ Sin costos ocultos ni sorpresas</div>
+  </div>
+
+  <div class="urgency-badge">⚡ Solo quedan 3 cupos esta semana</div><br>
+
+<a class="btn btn-wa" href="https://wa.me/5491133535442?text=Hola%20Luca%2C%20Soy%20%20%20quiero%20crear%20mi%20p%C3%A1gina%20web%20para%20mi%20negocio">💬 Hablar por WhatsApp</a>
+<a class="btn btn-outline btn" href="instagram://user?username=lucalautaro__" style="display:inline-block;margin-top:8px;">📸 Ver Instagram</a>
+
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ IDENTIFICACIÓN ═══════════ -->
+
+<section>
+  <h2>¿Te identificás<br>con <span class="gold-text">esto?</span></h2>
+  <p class="section-sub">Si respondés sí a alguna, necesitás una web ya</p>
+  <div class="divider"></div>
+
+  <div class="pain-card">
+    <div class="pain-icon">🕐</div>
+    <p>¿Tenés un negocio o servicio pero los clientes no te encuentran porque no tenés presencia online?</p>
+  </div>
+  <div class="pain-card">
+    <div class="pain-icon">❌</div>
+    <p>¿Usás solo Instagram para vender y perdés clientes que buscan en Google?</p>
+  </div>
+  <div class="pain-card">
+    <div class="pain-icon">❓</div>
+    <p>¿Querés una web pero no sabés por dónde empezar y te parece caro o complicado?</p>
+  </div>
+  <div class="pain-card">
+    <div class="pain-icon">💸</div>
+    <p>¿Sentís que tu negocio podría crecer más pero te falta algo para dar el salto?</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ PERFIL ═══════════ -->
+
+<section>
+  <div class="card">
+    <h2 style="font-size:20px;margin-bottom:8px;">@lucalautaro__</h2>
+    <p style="color:var(--white-dim);font-size:14px;line-height:1.65;">
+      Ayudo a negocios a conseguir más clientes<br>con páginas web modernas y profesionales.
+    </p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ SOBRE MÍ ═══════════ -->
+
+<section>
+  <h2>¿Quién está <span class="gold-text">detrás?</span></h2>
+  <p class="section-sub">Sabés con quién estás hablando antes de pagar</p>
+  <div class="divider"></div>
+
+  <div class="card" style="text-align:left;">
+    <p style="font-size:15px;color:var(--white);line-height:1.8;margin-bottom:20px;">
+      Soy <strong style="color:var(--gold-light);">Luca</strong>, diseñador web de Buenos Aires. Arranqué en plena pandemia en 2020 y desde entonces no paré. En 4 años armé más de <strong style="color:var(--gold-light);">50 páginas web</strong> para negocios reales — barberías, emprendimientos, servicios técnicos, comercios y más.
+    </p>
+    <p style="font-size:15px;color:var(--white-dim);line-height:1.8;">
+      Me caracterizo por ser <strong style="color:var(--white);">prolijo y responsable</strong>. Entrego en tiempo y forma, te muestro avances antes de cerrar, y no desaparezco después de la entrega.
+    </p>
+
+```
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;">
+  <div style="background:var(--gold-dim);border:1px solid rgba(201,169,110,0.25);border-radius:8px;padding:12px 16px;flex:1;min-width:100px;text-align:center;">
+    <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold-light);">4</div>
+    <div style="font-size:12px;color:var(--white-dim);margin-top:2px;">años de experiencia</div>
+  </div>
+  <div style="background:var(--gold-dim);border:1px solid rgba(201,169,110,0.25);border-radius:8px;padding:12px 16px;flex:1;min-width:100px;text-align:center;">
+    <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold-light);">+50</div>
+    <div style="font-size:12px;color:var(--white-dim);margin-top:2px;">webs entregadas</div>
+  </div>
+  <div style="background:var(--gold-dim);border:1px solid rgba(201,169,110,0.25);border-radius:8px;padding:12px 16px;flex:1;min-width:100px;text-align:center;">
+    <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold-light);">BsAs</div>
+    <div style="font-size:12px;color:var(--white-dim);margin-top:2px;">Buenos Aires</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ PRUEBA SOCIAL ═══════════ -->
+
+<section>
+  <h2>Confianza <span class="gold-text">real</span></h2>
+  <p class="section-sub">Miles de personas ya siguen mi trabajo</p>
+  <div class="divider"></div>
+  <div class="card">
+    <div class="stat-num">+9.000</div>
+    <div class="stat-label">seguidores en Instagram</div>
+    <a href="https://instagram.com/lucalautaro__" target="_blank"
+       style="display:inline-block;margin-top:16px;color:var(--gold-light);font-size:16px;font-weight:700;text-decoration:none;letter-spacing:0.5px;">
+      @lucalautaro__
+    </a>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ MOTIVACIÓN 1 ═══════════ -->
+
+<section>
+  <h2>Por qué <span class="gold-text">actuar hoy</span></h2>
+  <p class="section-sub">Lo que cambia cuando tomás la decisión correcta</p>
+  <div class="divider"></div>
+
+  <div class="motiv-block">
+    <p>"Tu negocio existe. Tus clientes también. El problema es que ellos no te encuentran. Una web lo resuelve hoy."</p>
+  </div>
+  <div class="motiv-block">
+    <p>"El mejor momento para tener presencia online fue hace un año. El segundo mejor momento es ahora mismo."</p>
+  </div>
+  <div class="motiv-block">
+    <p>"No es lo que sabés hacer. Es lo que el cliente puede encontrar. Si no te ven en internet, no existís."</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ PRECIO ═══════════ -->
+
+<section>
+  <h2>Oferta <span class="gold-text">limitada</span></h2>
+  <p class="section-sub">El precio sube cuando se agoten los cupos</p>
+  <div class="divider"></div>
+
+  <div class="card">
+    <div style="font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Precio de lanzamiento</div>
+    <div class="old-price">$ 120.000 ARS</div>
+    <div class="price-row">
+      <div class="price">$ 25.000</div>
+      <div class="price-badge">−79%</div>
+    </div>
+    <div class="price-sub">Pago único · Sin costos ocultos</div>
+
+```
+<ul class="check-list">
+  <li><span>✓</span> Landing page completa y profesional</li>
+  <li><span>✓</span> Optimizada para celular y computadora</li>
+  <li><span>✓</span> Entrega en 24–48 horas hábiles</li>
+  <li><span>✓</span> Soporte post-entrega incluido</li>
+</ul>
+
+<div class="cupos-bar" style="margin-top:20px;"><div class="cupos-fill"></div></div>
+<div class="cupos-text" id="cuposText" style="margin-bottom:16px;">⚠️ Cargando cupos...</div>
+
+<div class="timer-wrap">
+  <div class="timer-label">⏳ Oferta vence en</div>
+  <div class="timer">
+    <div class="timer-block"><div class="timer-num" id="t-h">00</div><div class="timer-unit">Horas</div></div>
+    <div class="timer-block"><div class="timer-num" id="t-m">00</div><div class="timer-unit">Min</div></div>
+    <div class="timer-block"><div class="timer-num" id="t-s">00</div><div class="timer-unit">Seg</div></div>
+  </div>
+</div>
+
+<br>
+<a class="btn btn-gold" href="https://wa.me/5491133535442?text=Hola%20Luca%2C%20Soy%20%20%20quiero%20crear%20mi%20p%C3%A1gina%20web%20para%20mi%20negocio">
+  Quiero mi web ahora →
+</a>
+```
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ PAGOS ═══════════ -->
+
+<section>
+  <h2>Elegí cómo <span class="gold-text">pagar</span></h2>
+  <p class="section-sub">Múltiples métodos · Seguro y rápido</p>
+  <div class="divider"></div>
+
+<a class="btn btn-outline btn" href="https://mpago.la/2E6iCco" target="_blank">💳 Mercado Pago</a>
+<a class="btn btn-outline btn" href="whatsapp://send?phone=5491133535442&text=Hola,%20quiero%20pagar%20con%20Naranja">🟠 Naranja X</a>
+<a class="btn btn-outline btn" href="whatsapp://send?phone=5491133535442&text=Hola,%20quiero%20pagar%20con%20USDT">🪙 Crypto (USDT)</a>
+
+  <p style="margin-top:20px;color:var(--white-dim);font-size:13px;">
+    Después de pagar enviame el comprobante por WhatsApp 💬
+  </p>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ TESTIMONIOS ═══════════ -->
+
+<section>
+  <h2>Lo que dicen mis <span class="gold-text">clientes</span></h2>
+  <p class="section-sub">Resultados reales · Personas reales</p>
+  <div class="divider"></div>
+
+  <div class="testimonial">
+    <div class="t-header">
+      <div class="t-avatar">💈</div>
+      <div><p class="t-name">Juan García</p><p class="t-role">Barbería · Buenos Aires</p></div>
+    </div>
+    <div class="stars">★★★★★</div>
+    <p>"En 2 días ya tenía clientes gracias a la web. Súper recomendable, quedó increíble 🔥"</p>
+  </div>
+
+  <div class="testimonial">
+    <div class="t-header">
+      <div class="t-avatar">👗</div>
+      <div><p class="t-name">Sofía Martínez</p><p class="t-role">Emprendimiento de indumentaria</p></div>
+    </div>
+    <div class="stars">★★★★★</div>
+    <p>"Muy profesional, rápido y el resultado superó todas mis expectativas. Vale cada peso."</p>
+  </div>
+
+  <div class="testimonial">
+    <div class="t-header">
+      <div class="t-avatar">🔧</div>
+      <div><p class="t-name">Martín López</p><p class="t-role">Servicio técnico</p></div>
+    </div>
+    <div class="stars">★★★★★</div>
+    <p>"Me hizo la web en 24 horas y la primera semana conseguí 3 consultas nuevas. 🙌"</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ BENEFICIOS ═══════════ -->
+
+<section>
+  <h2>¿Por qué <span class="gold-text">elegirme?</span></h2>
+  <p class="section-sub">Todo lo que necesitás para empezar a vender</p>
+  <div class="divider"></div>
+
+  <div class="card benefit">
+    <div class="b-icon">⚡</div>
+    <div><strong>Entrega en 24–48 horas</strong><p>Tu web lista para recibir clientes casi de inmediato</p></div>
+  </div>
+  <div class="card benefit">
+    <div class="b-icon">📱</div>
+    <div><strong>Optimizada para celular</strong><p>Se ve perfecta en cualquier dispositivo o pantalla</p></div>
+  </div>
+  <div class="card benefit">
+    <div class="b-icon">💰</div>
+    <div><strong>Diseño para generar ventas</strong><p>Estructura probada para convertir visitas en clientes</p></div>
+  </div>
+  <div class="card benefit">
+    <div class="b-icon">🛠️</div>
+    <div><strong>Soporte post-entrega</strong><p>Te acompaño con cambios y dudas después de entregar</p></div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ MOTIVACIÓN 2 — CIERRES ═══════════ -->
+
+<section>
+  <h2>¿Todavía <span class="gold-text">dudás?</span></h2>
+  <p class="section-sub">Leé esto antes de irte</p>
+  <div class="divider"></div>
+
+  <div class="motiv-block">
+    <p>"Cada día sin web es un cliente que fue a la competencia. El tiempo no espera, los clientes tampoco."</p>
+  </div>
+  <div class="motiv-block">
+    <p>"¿Cuánto perdés por mes sin presencia digital? Ese número es mucho mayor a $25.000."</p>
+  </div>
+  <div class="motiv-block">
+    <p>"No te pido que confíes en mí. Te pido que confíes en vos y en tu negocio. Yo pongo la web."</p>
+  </div>
+  <div class="motiv-block">
+    <p>"El cerebro compra emociones y lo justifica con lógica. Tu cliente ya te quiere contratar — solo necesita el empujón."</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ FAQ ═══════════ -->
+
+<section>
+  <h2>Preguntas <span class="gold-text">frecuentes</span></h2>
+  <p class="section-sub">Todo lo que necesitás saber antes de decidir</p>
+  <div class="divider"></div>
+
+  <div class="faq-item">
+    <div class="faq-q">¿En cuánto tiempo me entregás la web? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Entre 24 y 48 horas hábiles desde que confirmás el pago. En casos simples, muchas veces antes de las 24hs.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Qué incluye el servicio? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Diseño completo de la landing page, adaptación para celular y computadora, botones de contacto y estructura de ventas. Todo listo para publicar.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Necesito saber de tecnología? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Para nada. Yo me encargo de todo el proceso técnico. Vos solo me contás de tu negocio y yo construyo la web.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Dónde se publica la web? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Te entrego el archivo listo. Podemos publicarla en hosting gratuito (GitHub Pages, Netlify) o en uno propio si ya tenés. Te guío sin costo adicional.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Puedo pedir cambios después? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Sí. Incluyo revisiones menores post-entrega. Cambios grandes se presupuestan por separado a precio accesible.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Es seguro el pago? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>100%. Podés pagar por Mercado Pago (con protección al comprador), Naranja X o crypto. Apenas confirmado el pago, arrancamos.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Y si no me gusta cómo queda? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Antes de cerrar el trabajo te muestro un preview para que apruebes. Si algo no convence, lo ajustamos hasta que quedes conforme.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Por qué $25.000 y no más caro? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><p>Es un precio de lanzamiento para que más personas accedan a presencia digital sin importar el presupuesto. Va a subir cuando se llenen los cupos.</p></div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════ CTA FINAL ═══════════ -->
+
+<section>
+  <h2>¿Empezamos <span class="gold-text">hoy?</span></h2>
+  <p class="section-sub">Cupos limitados · No esperes a que se agoten</p>
+  <a class="btn btn-gold" href="https://wa.me/5491133535442?text=Hola%20Luca%2C%20Soy%20%20%20quiero%20crear%20mi%20p%C3%A1gina%20web%20para%20mi%20negocio">
+    🚀 Quiero mi web ahora →
+  </a>
+  <p style="margin-top:14px;font-size:13px;color:var(--white-dim);">Sin compromiso · Respondemos en minutos</p>
+</section>
+
+<footer>© 2025 @lucalautaro__ · Todos los derechos reservados</footer>
+
+<a href="https://wa.me/5491133535442?text=Hola%20Luca%2C%20Soy%20%20%20quiero%20crear%20mi%20p%C3%A1gina%20web%20para%20mi%20negocio" class="wf" title="WhatsApp">💬</a>
+
+<script>
+/* PARTÍCULAS */
+const cont = document.getElementById('particles');
+for (let i = 0; i < 35; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + 'vw';
+  const s = (Math.random() * 3 + 1.5) + 'px';
+  p.style.width = s; p.style.height = s;
+  p.style.animationDuration = (Math.random() * 20 + 12) + 's';
+  p.style.animationDelay = (Math.random() * 20) + 's';
+  cont.appendChild(p);
+}
+
+/* SCROLL REVEAL */
+const secs = document.querySelectorAll("section");
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.08 });
+secs.forEach(s => { if (!s.classList.contains('visible')) obs.observe(s); });
+
+/* CONTADOR */
+const TK = 'll_timer';
+let endTime;
+try {
+  const st = localStorage.getItem(TK);
+  endTime = st ? parseInt(st) : null;
+  if (!endTime || isNaN(endTime) || endTime < Date.now()) {
+    endTime = Date.now() + 23*3600000 + 47*60000;
+    localStorage.setItem(TK, endTime);
+  }
+} catch(e) { endTime = Date.now() + 23*3600000 + 47*60000; }
+
+function pad(n){ return String(n).padStart(2,'0'); }
+function tick(){
+  const d = endTime - Date.now();
+  if(d <= 0){
+    try{ localStorage.removeItem(TK); }catch(e){}
+    endTime = Date.now() + 24*3600000;
+    try{ localStorage.setItem(TK, endTime); }catch(e){}
+    return;
+  }
+  document.getElementById('t-h').textContent = pad(Math.floor(d/3600000));
+  document.getElementById('t-m').textContent = pad(Math.floor((d%3600000)/60000));
+  document.getElementById('t-s').textContent = pad(Math.floor((d%60000)/1000));
+}
+tick(); setInterval(tick, 1000);
+
+/* DÓLAR BLUE */
+async function fetchDolarBlue() {
+  const el = document.getElementById('precio-ars');
+  const info = document.getElementById('cotizacion-info');
+  try {
+    const res = await fetch('https://dolarapi.com/v1/dolares/blue');
+    const data = await res.json();
+    const blue = data.venta;
+    const totalARS = Math.round(25 * blue);
+    const fmt = totalARS.toLocaleString('es-AR');
+    el.textContent = `$ ${fmt} ARS`;
+    info.textContent = `USD 25 × $${blue} (blue) · Actualizado hoy`;
+  } catch(e) {
+    el.textContent = '$ — ARS';
+    info.textContent = 'Escribinos para consultar el precio en pesos';
+  }
+}
+fetchDolarBlue();
+
+/* CUPOS */
+const CK = 'll_cupos';
+let cupos = 4;
+try {
+  const sc = localStorage.getItem(CK);
+  // Si ya había un valor guardado lo usamos, si no arrancamos desde 4
+  cupos = sc ? parseInt(sc) : 4;
+  if(!sc) localStorage.setItem(CK, cupos);
+} catch(e){}
+const cel = document.getElementById('cuposText');
+cel.textContent = cupos <= 1 ? '🔴 ¡Último cupo disponible!' : `⚠️ Solo ${cupos} cupos disponibles`;
+
+/* FAQ */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>
