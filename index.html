@@ -710,8 +710,45 @@ footer {
 <div class="sep"></div>
 
 <!-- ═══════════ CTA FINAL ═══════════ -->
+<div class="sep"></div>
 
 <section>
+  <h2>Mi <span class="gold-text">certificación</span></h2>
+  <p class="section-sub">Formación profesional en Diseño y Desarrollo Web</p>
+  <div class="divider"></div>
+
+  <div class="card" style="max-width:440px;margin:0 auto;text-align:center;padding:36px 28px;border:1px solid rgba(201,169,110,0.35);background:linear-gradient(160deg,#1a1410 0%,#211c14 100%);">
+    <div style="font-size:20px;color:var(--gold);letter-spacing:8px;margin-bottom:18px;">✦ ✦ ✦</div>
+    <div style="font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:6px;">Certificado Profesional</div>
+    <div style="font-size:12px;color:var(--white-dim);letter-spacing:1px;margin-bottom:20px;">Academia de Diseño Digital · Buenos Aires</div>
+    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 20px;"></div>
+    <div style="font-family:'Playfair Display',serif;font-size:13px;color:var(--white-dim);font-style:italic;margin-bottom:6px;">De Excelencia en</div>
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--white);line-height:1.3;margin-bottom:20px;">Diseño y Desarrollo Web</div>
+    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 20px;"></div>
+    <div style="font-size:11px;color:var(--white-dim);margin-bottom:8px;">Otorgado a</div>
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold-light);margin-bottom:6px;">Luca Alvarez</div>
+    <div style="font-size:12px;color:var(--white-dim);line-height:1.6;margin-bottom:20px;">Diseñador Web Certificado<br>Buenos Aires, Argentina</div>
+    <div style="background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.15);border-radius:8px;padding:12px 16px;margin-bottom:20px;">
+      <div style="font-size:12px;color:var(--white-dim);line-height:1.8;">
+        ✓ HTML · CSS · UX/UI · Desarrollo profesional<br>
+        ✓ 1 año de formación práctica<br>
+        ✓ Proyectos reales entregados
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-around;gap:12px;margin-bottom:20px;">
+      <div style="text-align:center;">
+        <div style="width:80px;height:1px;background:rgba(201,169,110,0.4);margin:0 auto 6px;"></div>
+        <div style="font-size:11px;color:var(--white-dim);line-height:1.5;">Diego Vainesman<br><span style="color:var(--gold);font-size:10px;">Director · Type Directors Club</span></div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:1px;background:rgba(201,169,110,0.4);margin:0 auto 6px;"></div>
+        <div style="font-size:11px;color:var(--white-dim);line-height:1.5;">Luca Alvarez<br><span style="color:var(--gold);font-size:10px;">Diseñador Web Certificado</span></div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:rgba(201,169,110,0.4);letter-spacing:1.5px;text-transform:uppercase;">N° CERT-HT2L2SDB · Emitido: 31 de Diciembre de 2024</div>
+    <div style="font-size:16px;color:var(--gold);letter-spacing:6px;margin-top:18px;">✦ 2024 ✦</div>
+  </div>
+</section>
   <h2>¿Empezamos <span class="gold-text">hoy?</span></h2>
   <p class="section-sub">Cupos limitados · No esperes a que se agoten</p>
   <a class="btn btn-gold" href="https://wa.me/5491133535442?text=Hola%20Luca%2C%20Soy%20%20%20quiero%20crear%20mi%20p%C3%A1gina%20web%20para%20mi%20negocio">
@@ -793,11 +830,11 @@ fetchDolarBlue();
 
 /* CUPOS */
 const CK = 'll_cupos';
-let cupos = 4;
+let cupos = 3;
 try {
   const sc = localStorage.getItem(CK);
   // Si ya había un valor guardado lo usamos, si no arrancamos desde 4
-  cupos = sc ? parseInt(sc) : 4;
+  cupos = sc ? parseInt(sc) : 3;
   if(!sc) localStorage.setItem(CK, cupos);
 } catch(e){}
 const cel = document.getElementById('cuposText');
